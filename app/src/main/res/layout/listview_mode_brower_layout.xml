@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/brower_current_path"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:singleLine="true"
+        android:layout_height="20dp"
         android:ellipsize="start"
+        android:singleLine="true"
         android:layout_margin="5dp"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:background="@drawable/ic_launcher_background"/>
+
     <ListView
         android:id="@+id/brower_listview_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/brower_current_path"></ListView>
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="wrap_content"></ListView>
+</LinearLayout>

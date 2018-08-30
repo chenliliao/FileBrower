@@ -9,6 +9,7 @@ import com.cll.toy.filebrowewrlib.filebrower.bean.FileBean
 import com.cll.toy.filebrowewrlib.filebrower.browerview.ListLayoutView
 import java.io.File
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by cll on 2018-08-30.
@@ -50,22 +51,20 @@ class FunctionExecute(context : Context){
 
     fun fileData(rootDir : String?) : ArrayList<FileBean> {
         val data = ArrayList<FileBean>();
+        val fileData = ArrayList<FileBean>();
         if (!TextUtils.isEmpty(rootDir)){
             val file = File(rootDir);
             val files = file.listFiles();
             if (files != null){
                 Arrays.sort(files)
                 for(i in 0..files.size - 1){
-                    if (files[i].isHidden){
-                        if (CurrentInfoBean().isHideFiles){
-                            continue;
-                        }else{
-                            data.add(addFileAttribute(files[i]));
-                        }
+                    if (files[i].isFile){
+                        addData(files[i], fileData)
                     }else{
-                        data.add(addFileAttribute(files[i]));
+                        addData(files[i], data)
                     }
                 }
+                data.addAll(fileData)
                 return data;
             }else{
                 Throwable("check permission read...")
@@ -74,6 +73,18 @@ class FunctionExecute(context : Context){
             Throwable("root dir has not to set")
         }
         return data;
+    }
+
+    private fun addData(file: File, data : ArrayList<FileBean>){
+        if (file.isHidden){
+            if (fileFilter!!.isHideFiles){
+//                    continue;
+            }else{
+                data.add(addFileAttribute(file));
+            }
+        }else{
+            data.add(addFileAttribute(file));
+        }
     }
 
     private fun addFileAttribute(file : File) : FileBean{
