@@ -19,8 +19,6 @@ class FileContentFilter(){
 
     var mRootDirectory : String? = null;
     var isHideFiles = false;
-    var mContext : Context? = null;
-    var mView : ListLayoutView? = null;
 
     fun setRootDirectory(dir : String): FileContentFilter {
         mRootDirectory = dir;
@@ -32,7 +30,7 @@ class FileContentFilter(){
         return this;
     }
 
-//    fun init(context : Context) : ViewGroup?{
-//        return FunctionExecute(context).displayList(mRootDirectory, isHideFiles);
-//    }
+    private fun setChange(){
+
+    }
 }

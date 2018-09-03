@@ -20,9 +20,9 @@ class FunctionExecute(context : Context){
 ////    var rootDir: String? = null;
 //    var isHideFiles : Boolean = false
 
-    var mContext = context;
-    var mView : ListLayoutView? = null;
-    var fileFilter : FileContentFilter? = null;
+    internal var mContext = context;
+    internal var mView : ListLayoutView? = null;
+    internal var fileFilter : FileContentFilter? = null;
 
     init{
         fileFilter = FileContentFilter()
@@ -30,7 +30,19 @@ class FunctionExecute(context : Context){
                 .showHiddenFiles(false)
     }
 
+    fun getFileFilter() : FileContentFilter?{
+        return fileFilter;
+    }
+
+    fun updateFileFilter(isHideFiles : Boolean){
+        Log.w("TAG", "test updata file filter isHideFiles 1" + isHideFiles)
+        fileFilter!!.isHideFiles = isHideFiles
+        Log.w("TAG", "test updata file filter isHideFiles 2" + isHideFiles)
+        mView!!.updataAdapter(null, fileFilter!!.isHideFiles);
+    }
+
     fun showView() : ListLayoutView?{
+        Log.w("TAG", "test updata file filter isHideFiles 3" + fileFilter!!.isHideFiles)
         return displayList(fileFilter!!.mRootDirectory, fileFilter!!.isHideFiles);
     }
 
@@ -49,19 +61,19 @@ class FunctionExecute(context : Context){
     }
 
 
-    fun fileData(rootDir : String?) : ArrayList<FileBean> {
+    fun fileData(currentInfo : CurrentInfoBean) : ArrayList<FileBean> {
         val data = ArrayList<FileBean>();
         val fileData = ArrayList<FileBean>();
-        if (!TextUtils.isEmpty(rootDir)){
-            val file = File(rootDir);
+        if (!TextUtils.isEmpty(currentInfo.currentPath)){
+            val file = File(currentInfo.currentPath);
             val files = file.listFiles();
             if (files != null){
                 Arrays.sort(files)
                 for(i in 0..files.size - 1){
                     if (files[i].isFile){
-                        addData(files[i], fileData)
+                        addData(files[i], fileData, currentInfo.isHideFiles)
                     }else{
-                        addData(files[i], data)
+                        addData(files[i], data, currentInfo.isHideFiles)
                     }
                 }
                 data.addAll(fileData)
@@ -75,9 +87,9 @@ class FunctionExecute(context : Context){
         return data;
     }
 
-    private fun addData(file: File, data : ArrayList<FileBean>){
+    private fun addData(file: File, data : ArrayList<FileBean>, isHideFiles : Boolean){
         if (file.isHidden){
-            if (fileFilter!!.isHideFiles){
+            if (isHideFiles){
 //                    continue;
             }else{
                 data.add(addFileAttribute(file));
@@ -92,7 +104,8 @@ class FunctionExecute(context : Context){
         bean.file_name = file.name;
         if (file.isFile){
             bean.file_size = file.length().toString() + "B"
-            bean.file_image = R.drawable.ic_launcher_foreground
+//            bean.file_image = R.drawable.ic_launcher_foreground
+            bean.file_image = R.mipmap.ic_launcher;
         }else{
             bean.file_size = File(file.absolutePath).listFiles().size.toString() + "内容"
             bean.file_image = R.drawable.icon_folderblue

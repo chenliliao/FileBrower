@@ -29,17 +29,20 @@ class ListLayoutView(context: Context?, rootDir : String?, isHideFiles : Boolean
     var data : ArrayList<FileBean>?  = null;
 
     init {
-        currentInfo = CurrentInfoBean();
+        if (currentInfo == null){
+            currentInfo = CurrentInfoBean();
+        }
+
         currentInfo!!.isHideFiles = isHideFiles;
         init(rootDir)
     }
 
     private fun init(rootDir : String?){
         sView = LayoutInflater.from(context).inflate(R.layout.listview_mode_brower_layout, this);
-        setAdapter(rootDir);
+        updataAdapter(rootDir, currentInfo!!.isHideFiles);
         sView!!.brower_listview_layout.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             var file = File(data!!.get(position).file_path)
-            if (file.isDirectory) setAdapter(file.absolutePath);
+            if (file.isDirectory) updataAdapter(file.absolutePath, currentInfo!!.isHideFiles);
             else  Toast.makeText(context, "无法打开文件", Toast.LENGTH_LONG).show()
         };
     }
@@ -48,7 +51,7 @@ class ListLayoutView(context: Context?, rootDir : String?, isHideFiles : Boolean
         if (currentInfo != null){
             var path = File(currentInfo!!.currentPath).parent
             if (!TextUtils.equals(path, Environment.getExternalStorageDirectory().parent)){
-                setAdapter(File(currentInfo!!.currentPath).parent);
+                updataAdapter(File(currentInfo!!.currentPath).parent, currentInfo!!.isHideFiles);
                 return true;
             }else{
 //                 Toast.makeText(context, "无法向上", Toast.LENGTH_LONG).show()
@@ -57,11 +60,17 @@ class ListLayoutView(context: Context?, rootDir : String?, isHideFiles : Boolean
         }
          return false;
     }
-    private fun setAdapter(path : String?){
-        currentInfo!!.currentPath = path;
-        data = FunctionExecute(context).fileData(path);
+     fun updataAdapter(path : String?, isHideFiles :Boolean){
+         if (TextUtils.isEmpty(path)){
+             currentInfo!!.currentPath = currentInfo!!.currentPath
+         }else{
+             currentInfo!!.currentPath = path;
+         }
+
+         currentInfo!!.isHideFiles = isHideFiles;
+        data = FunctionExecute(context).fileData(currentInfo!!);
         adapter = FileBrowerAdapter(context, data);
         sView!!.brower_listview_layout.adapter = adapter;
-        sView!!.brower_current_path.text = path;
+        sView!!.brower_current_path.text =  currentInfo!!.currentPath;
     }
 }
