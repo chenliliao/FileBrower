@@ -13,12 +13,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var mExecute  : FunctionExecute =  FunctionExecute(this);
+    private var mProxy : ProxyExecute? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (PermissionUtils.checkPermission(this,  Manifest.permission.READ_EXTERNAL_STORAGE, 1)){
-            this.contact_framlayout.addView(mExecute.showView())
+        mProxy = ProxyExecute(this)
+        if (PermissionUtils.up6Premission(this)){
+            this.contact_framlayout.addView(mProxy!!.showView())
         }
 
     }
@@ -26,16 +27,16 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1){
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                setContentView(mExecute.showView())
+                setContentView(mProxy!!.showView())
             }else{
-                PermissionUtils.checkPermission(this,  Manifest.permission.READ_EXTERNAL_STORAGE, 1)
+                PermissionUtils.up6Premission(this)
             }
         }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK){
-            if (mExecute.onKeyDownBack()){
+            if (mProxy!!.onKeyDownBack()){
                 return true;
             }else{
                 return  super.onKeyDown(keyCode, event)
@@ -52,12 +53,14 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val id = item!!.itemId;
         if (id == R.id.menu_setting){
-            if (mExecute.getFileFilter()!!.isHideFiles){
-                item.title = "隐藏文件"
-                mExecute.updateFileFilter(false)
+            val info = mProxy!!.getFileFilter();
+            if (info == null) return false;
+            if (info.isHideFiles){
+                item.title = this.resources.getString(R.string.text_show_content_hide_files)
+                mProxy!!.updataCurrentInfo(false)
             }else{
-                item.title = "显示隐藏文件"
-                mExecute.updateFileFilter(true)
+                item.title = this.resources.getString(R.string.text_show_content_display_files)
+                mProxy!!.updataCurrentInfo(true)
             }
 
         }

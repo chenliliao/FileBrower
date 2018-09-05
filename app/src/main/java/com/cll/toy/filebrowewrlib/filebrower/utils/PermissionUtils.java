@@ -19,8 +19,8 @@ public class PermissionUtils {
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA,
-            Manifest.permission.RECORD_AUDIO
+//            Manifest.permission.CAMERA,
+//            Manifest.permission.RECORD_AUDIO
     };
 
     public synchronized static boolean isUnderLollipop(){
@@ -33,7 +33,7 @@ public class PermissionUtils {
 
 
 
-    public synchronized static void up6Premission(final Activity activity){
+    public synchronized static boolean up6Premission(final Activity activity){
 
         ArrayList<String> list = new ArrayList<>();
         list.clear();
@@ -46,7 +46,9 @@ public class PermissionUtils {
             String[] newPermission = new String[list.size()];
             list.toArray(newPermission);
             ActivityCompat.requestPermissions(activity, newPermission,1);
+            return false;
         }
+        return true;
     }
     public synchronized static void checkPermission(final Activity activity, final String permission){
         Log.w("TAG","test not permission 1");

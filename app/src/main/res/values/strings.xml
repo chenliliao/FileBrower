@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FileBrower</string>
+    <string name="text_popup_edit_confirm">确定</string>
+    <string name="text_popup_edit_cancel">取消</string>
+
+    <string name="text_show_content_hide_files">隐藏文件</string>
+    <string name="text_show_content_display_files">显示隐藏文件</string>
 </resources>
