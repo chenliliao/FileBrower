@@ -5,4 +5,9 @@
 
     <string name="text_show_content_hide_files">隐藏文件</string>
     <string name="text_show_content_display_files">显示隐藏文件</string>
+    <string name="toast_show_content_display_files">无法打开文件</string>
+    <string name="edit_hint_message_new_file_dir">新文件夹</string>
+    <string name="edit_hint_message_default">提示：内容</string>
+
+
 </resources>

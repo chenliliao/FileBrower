@@ -24,7 +24,7 @@ class ProxyExecute(context : Context){
 
     fun updataCurrentInfo(isHideFiles : Boolean){
         Log.w("TAG","test getCurrentInfo 3 " + isHideFiles)
-        getListView()!!.updataCurrentInfo(null, isHideFiles);
+        getListView()!!.updataFileFilter(null, isHideFiles);
     }
 
     fun showView() : ListLayoutView?{

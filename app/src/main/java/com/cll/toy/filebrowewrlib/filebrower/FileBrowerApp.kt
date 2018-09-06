@@ -7,15 +7,20 @@ import android.content.Context
  * Created by cll on 2018-09-05.
  */
 
-class FlieBrowerApp : Application(){
+class FileBrowerApp : Application(){
 
-    private var mContent : Context? = null;
+
     override fun onCreate() {
         super.onCreate()
-        mContent = applicationContext;
+        content = this;
     }
 
-    fun getAppContent(): Context? {
-        return mContent;
+    companion object {
+        var content : Context? = null
+        private set
     }
+
+//    fun getAppContent(): Context? {
+//        return mContent;
+//    }
 }

@@ -16,16 +16,17 @@ import kotlinx.android.synthetic.main.listview_mode_item_layout.view.*
  * Created by cll on 2018-08-29.
  */
 
-class FileBrowerAdapter(context : Context?, val data : ArrayList<FileBean>?) : BaseAdapter() {
+class FileBrowerAdapter(context : Context?, val datas : ArrayList<FileBean>?) : BaseAdapter() {
 
-    val mContext : Context? = context;
+    private val mContext : Context? = context;
+    var mData : ArrayList<FileBean>? = datas;
 
     override fun getCount(): Int {
-        return data!!.size
+        return if (mData!!.size <= 0) 0 else mData!!.size
     }
 
     override fun getItem(position: Int): Any? {
-        return data?.get(position)
+        return mData?.get(position)
     }
 
     override fun getItemId(position: Int): Long {
@@ -46,9 +47,9 @@ class FileBrowerAdapter(context : Context?, val data : ArrayList<FileBean>?) : B
         }
 
         holder = view?.tag as Holder;
-        holder.file_name!!.text = data!!.get(position).file_name
-        holder.file_size!!.text = data!!.get(position).file_size
-        holder.file_image!!.setImageResource(data!!.get(position).file_image)
+        holder.file_name!!.text = mData?.get(position)?.file_name
+        holder.file_size!!.text = mData?.get(position)?.file_size
+        holder.file_image!!.setImageResource(mData?.get(position)?.file_image!!)
         return view
     }
 

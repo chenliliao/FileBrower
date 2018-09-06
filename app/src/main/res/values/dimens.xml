@@ -6,6 +6,11 @@
     <dimen name="margin_size_15">15dp</dimen>
     <dimen name="margin_size_20">20dp</dimen>
 
+    <dimen name="corners_size_10">10dp</dimen>
+    <dimen name="corners_size_20">20dp</dimen>
+    <dimen name="corners_size_30">30dp</dimen>
+    <dimen name="corners_size_40">40dp</dimen>
+
 
     <dimen name="popup_button_text_size_10">10sp</dimen>
     <dimen name="popup_button_text_size_15">15sp</dimen>
