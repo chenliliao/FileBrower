@@ -1,4 +1,4 @@
-package com.cll.toy.filebrowewrlib.filebrower.managers
+package com.cll.toy.filebrowerlib.managers
 
 import android.util.Log
 import java.io.File

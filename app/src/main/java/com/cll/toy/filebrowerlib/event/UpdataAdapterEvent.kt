@@ -1,4 +1,4 @@
-package com.cll.toy.filebrowewrlib.filebrower.event
+package com.cll.toy.filebrowerlib.event
 
 /**
  * Created by cll on 2018-09-05.

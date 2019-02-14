@@ -1,4 +1,4 @@
-package com.cll.toy.filebrowewrlib.filebrower.utils;
+package com.cll.toy.filebrowerlib.utils;
 
 import android.Manifest;
 import android.app.Activity;

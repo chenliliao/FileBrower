@@ -1,9 +1,9 @@
-package com.cll.toy.filebrowewrlib.filebrower
+package com.cll.toy.filebrowerlib
 
 import android.content.Context
 import android.os.Environment
 import android.util.Log
-import com.cll.toy.filebrowewrlib.filebrower.browerview.ListLayoutView
+import com.cll.toy.filebrowerlib.browerview.ListLayoutView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -17,14 +17,14 @@ class ProxyExecute(context : Context){
     internal var fileFilter : FileContentFilter? = null;
 
     init{
-        fileFilter = FileContentFilter()
+        fileFilter = FileContentFilter(FunctionExecute.FILE_FILTER_ALL_DATA_LIST)
                 .setDirPath(Environment.getExternalStorageDirectory().absolutePath)
                 .setHiddenFiles(true)
     }
 
     fun updataCurrentInfo(isHideFiles : Boolean){
         Log.w("TAG","test getCurrentInfo 3 " + isHideFiles)
-        getListView()!!.updataFileFilter(null, isHideFiles);
+        getListView()!!.updataFileFilter(null, isHideFiles,getFileFilter()!!.type, getFileFilter()!!.letter);
     }
 
     fun showView() : ListLayoutView?{

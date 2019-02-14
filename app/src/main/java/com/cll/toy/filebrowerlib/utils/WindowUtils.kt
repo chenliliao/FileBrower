@@ -1,10 +1,10 @@
-package com.cll.toy.filebrowewrlib.filebrower.utils
+package com.cll.toy.filebrowerlib.utils
 
 import android.content.Context
 import android.util.DisplayMetrics
 import android.view.Display
 import android.view.WindowManager
-import com.cll.toy.filebrowewrlib.filebrower.FileBrowerApp
+import com.cll.toy.filebrowerlib.FileBrowerApp
 
 /**
  * Created by cll on 2018/7/4.

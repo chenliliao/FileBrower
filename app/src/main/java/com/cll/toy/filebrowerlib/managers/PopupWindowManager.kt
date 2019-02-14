@@ -1,4 +1,4 @@
-package com.cll.toy.filebrowewrlib.filebrower.managers
+package com.cll.toy.filebrowerlib.managers
 
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.cll.toy.filebrowewrlib.filebrower.R
-import com.cll.toy.filebrowewrlib.filebrower.utils.WindowUtils
+import com.cll.toy.filebrowerlib.R
+import com.cll.toy.filebrowerlib.utils.WindowUtils
 import kotlinx.android.synthetic.main.popup_edit_window_layout.view.*
 
 /**

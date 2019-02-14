@@ -1,4 +1,4 @@
-package com.cll.toy.filebrowewrlib.filebrower.type
+package com.cll.toy.filebrowerlib.type
 
 /**
  * Created by cll on 2018-09-05.

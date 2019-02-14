@@ -1,4 +1,4 @@
-package com.cll.toy.filebrowewrlib.filebrower
+package com.cll.toy.filebrowerlib
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -8,7 +8,10 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
-import com.cll.toy.filebrowewrlib.filebrower.utils.PermissionUtils
+import com.cll.toy.filebrowerlib.R
+import com.cll.toy.filebrowerlib.utils.PermissionUtils
+import com.cll.toy.filebrowerlib.ProxyExecute
+import com.cll.toy.filebrowerlib.utils.SpellingUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

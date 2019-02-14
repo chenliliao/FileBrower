@@ -4,8 +4,9 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
+    buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "com.cll.toy.filebrowewrlib.filebrower"
+        applicationId "com.cll.toy.filebrowerlib"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
@@ -22,13 +23,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:26.+'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'org.greenrobot:eventbus:3.1.1'
+    compile 'com.github.promeg:tinypinyin:2.0.3' // TinyPinyin核心包，约80KB
+    compile 'com.github.promeg:tinypinyin-lexicons-android-cncity:2.0.3' // 可选，适用于Android的中国地区词典
 }
 repositories {
     mavenCentral()
